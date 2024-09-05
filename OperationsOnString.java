@@ -54,14 +54,18 @@ public class OperationsOnString{
 	public static void main(String[] args) {
 		System.out.println(dependency.ENTER_INPUT);
 		MainString = input.nextLine();
-		dependency.display_options();
+		if (MainString.isEmpty()) {
+            System.out.println("Main String cannot be empty.");
+            return;
+        }
+		dependency.display_options();		
 		String input_option = input.next();
 		boolean isQuit = false; 
 		do {
 			switch(input_option) {
             case "1":
                 System.out.println(dependency.appendMessage);
-                append(MainString);
+                append();
                 break;
             case "2":
                 System.out.println(dependency.countWordsMessage);
@@ -81,7 +85,7 @@ public class OperationsOnString{
                 break;
             case "6":
                 System.out.println(dependency.splitMessage);
-                split();
+                split(MainString);
                 break;
             case "7":
                 System.out.println(dependency.maxCharMessage);
@@ -135,14 +139,13 @@ public class OperationsOnString{
 			}
 		}while(!isQuit);	
 	}
-	static void append(String MainString){
-		String AppendedString;
+	static void append(){
         System.out.println(dependency.ENTER_INPUT);
-        String newString = input.next();
-		AppendedString = MainString + newString;
-		MainString = AppendedString;
+        input.nextLine();
+        String newString = input.nextLine();
+		MainString = MainString + newString;
 		System.out.println(dependency.OUTPUT_MESSAGE);
-		System.out.println(AppendedString);
+		System.out.println(MainString);
 	}
     
     public static void countWords(){
@@ -165,26 +168,32 @@ public class OperationsOnString{
     }
 
     public static void replace(){
-        System.out.println("enter replacing string ");
-        String a = input.nextLine();
-        
-        System.out.println("enter new words for replacing ");
-        String b = input.nextLine();
+        System.out.println("Enter replacing string ");
+        String a = input.next();        
+        System.out.println("Enter new words for replacing ");
+        String b = input.next();
 
         String newString = "";
+        int count = 0;
         
         for (int i = 0; i < MainString.length(); i++) {
             char currentChar = MainString.charAt(i);
 
             if (MainString.substring(i).startsWith(a)) {
                 newString += b;
-                i = i + a.length() -1;
+                i = i + a.length()-1;
+                count++;
             }else{
                 newString = newString + currentChar;
             }
         }
-        System.out.println(dependency.OUTPUT_MESSAGE);
-        System.out.println(newString);
+        if(count==0) {
+        	System.out.println("No string found that is to be replaced!!");
+        }
+        else {
+        	System.out.println(dependency.OUTPUT_MESSAGE);
+            System.out.println(newString);
+        }
 
     }
     
@@ -198,7 +207,6 @@ public class OperationsOnString{
             System.out.println("The given String is Palindrome");
             return;
         }
-
         System.out.println("The given String is not Palindrome : "+newString);
     }
 
@@ -247,26 +255,31 @@ public class OperationsOnString{
         
         return newString;
     }
-    public static void split() {
+    public static void split(String OriginalString) {
         System.out.println("Enter a pattern for splitting into Array: ");
+        input.nextLine();
         String pattern = input.nextLine();
-        String[] words = new String[MainString.length() + 1];
+        String[] words = new String[OriginalString.length() + 1];
         int indexCount = 0;
-        
-        for (int i = 0; i < MainString.length(); i++) {
-            if (MainString.startsWith(pattern, i)) {
-                words[indexCount++] = MainString.substring(0, i);
-                MainString = MainString.substring(i + pattern.length());
+        if (pattern.isEmpty()) {
+            System.out.println("Pattern cannot be empty.");
+            return;
+        }
+        for (int i = 0; i < OriginalString.length(); i++) {
+            if (OriginalString.startsWith(pattern, i)) {
+                words[indexCount] = OriginalString.substring(0, i);
+                indexCount++;
+                OriginalString = OriginalString.substring(i + pattern.length());
                 i = -1;
             }
         }
         
-        words[indexCount] = MainString;        
-        String[] withoutNullWords = new String[indexCount+1];
+        words[indexCount] = OriginalString;        
+        String[] withoutNull = new String[indexCount+1];
         for (int i = 0; i < indexCount+1; i++) {
-            withoutNullWords[i] = words[i];
+            withoutNull[i] = words[i];
         }
-        System.out.println(Arrays.toString(withoutNullWords));
+        System.out.println(Arrays.toString(withoutNull));
     }
     public static void quickSort(char[] arr, int low, int high) {
             if (low < high) {
