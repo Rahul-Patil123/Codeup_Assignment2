@@ -45,7 +45,7 @@
 			String text = "Java";
 	]
 **/
-import java.util.Arrays;
+import java.util.CharacterArrayays;
 import java.util.Scanner;
 public class OperationsOnString{
 	static String MainString;
@@ -106,9 +106,9 @@ public class OperationsOnString{
                 		break;
                 	}
                 }
-                char[] newString = (MainString.toLowerCase()).toCharArray();
+                char[] newString = (MainString.toLowerCase()).toCharCharacterArrayay();
         		quickSort(newString,0,(newString.length)-1);
-                System.out.println(Arrays.toString(newString));                
+                System.out.println(CharacterArrayays.toString(newString));                
                 break;
             case "9":
                 System.out.println(dependency.shiftMessage);
@@ -256,7 +256,7 @@ public class OperationsOnString{
         return newString;
     }
     public static void split(String OriginalString) {
-        System.out.println("Enter a pattern for splitting into Array: ");
+        System.out.println("Enter a pattern for splitting into CharacterArrayay: ");
         input.nextLine();
         String pattern = input.nextLine();
         String[] words = new String[OriginalString.length() + 1];
@@ -279,34 +279,34 @@ public class OperationsOnString{
         for (int i = 0; i < indexCount+1; i++) {
             withoutNull[i] = words[i];
         }
-        System.out.println(Arrays.toString(withoutNull));
+        System.out.println(CharacterArrayays.toString(withoutNull));
     }
-    public static void quickSort(char[] arr, int low, int high) {
+    public static void quickSort(char[] CharacterArray, int low, int high) {
             if (low < high) {
-                int pi = partition(arr, low, high);
+                int pi = partition(CharacterArray, low, high);
 
-                quickSort(arr, low, pi - 1);
-                quickSort(arr, pi + 1, high);
+                quickSort(CharacterArray, low, pi - 1);
+                quickSort(CharacterArray, pi + 1, high);
             }
      }
 
-     private static int partition(char[] arr, int low, int high) {
-            char pivot = arr[high];
+     private static int partition(char[] CharacterArray, int low, int high) {
+            char pivot = CharacterArray[high];
             int i = (low - 1);
 
             for (int j = low; j < high; j++) {
-                if (arr[j] < pivot) {
+                if (CharacterArray[j] < pivot) {
                     i++;
 
-                    char temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
+                    char temp = CharacterArray[i];
+                    CharacterArray[i] = CharacterArray[j];
+                    CharacterArray[j] = temp;
                 }
             }
 
-            char temp = arr[i + 1];
-            arr[i + 1] = arr[high];
-            arr[high] = temp;
+            char temp = CharacterArray[i + 1];
+            CharacterArray[i + 1] = CharacterArray[high];
+            CharacterArray[high] = temp;
 
             return i + 1;
         }
