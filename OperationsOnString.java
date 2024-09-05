@@ -138,6 +138,7 @@ public class OperationsOnString{
 			}
 		}while(!isQuit);	
 	}
+	//Append function is used to add to strings together
 	static void append(){
         System.out.println(dependency.ENTER_INPUT);
         input.nextLine();
@@ -146,7 +147,7 @@ public class OperationsOnString{
 		System.out.println(dependency.OUTPUT_MESSAGE);
 		System.out.println(MainString);
 	}
-    
+    //Count words function prints how many words are present in string
     public static void countWords(){
         int count = 0;
         boolean isWord = false;
@@ -165,7 +166,7 @@ public class OperationsOnString{
         }
         System.out.println(dependency.TOTAL_WORDS + count);
     }
-
+    //Replace function is used to replace certain part of string 
     public static void replace(){
         System.out.println(dependency.REPLACE_STRING);
         String replaceString = input.next();
@@ -194,7 +195,7 @@ public class OperationsOnString{
         }
 
     }
-    
+    //Is Palindrome function checks whether given string is palindrome or not
     public static void isPalindrome(){
         String newString = "";
         for (int i = MainString.length()-1; i >=0 ; i--) {
@@ -207,7 +208,7 @@ public class OperationsOnString{
         }
         System.out.println(dependency.NOTPALINDROME+newString);
     }
-
+    //Splice function is used to trim main string 
     public static void splice(){
         int startIndex;
         while (true) {
@@ -253,7 +254,7 @@ public class OperationsOnString{
         }
         System.out.println(dependency.SPLICED_STRING+newString);
     }
-
+    //Shift function is used to print shifted string on basis of frequency
     public static void shift(){
         System.out.println(dependency.MOVE_CHARACTER);
         int FrequencyOfMoving;
@@ -285,7 +286,8 @@ public class OperationsOnString{
         secondString = reverse(secondString);
         System.out.println(firstString+secondString);
     }
-
+    //This function is used to return reversed string 
+    //Parameter include copy of main string
     public static String reverse(String MainString){
         String newString = "";
         for (int i = MainString.length()-1; i >=0 ; i--) {
@@ -295,6 +297,8 @@ public class OperationsOnString{
         
         return newString;
     }
+    //This function prints String splitted by given pattern
+    //This has parameter original string which is copy of the main string
     public static void split(String OriginalString) {
         System.out.println(dependency.PATTERN_INPUT);
         input.nextLine();
@@ -321,15 +325,20 @@ public class OperationsOnString{
         }
         System.out.println(Arrays.toString(withoutNull));
     }
+    //This function prints sorted character array on the basis of their ASCII value
+    //Parameters taken are character array which main string converted to character array
+    //Low is base index or initial index of array
+    //High is basically length of array
     public static void quickSort(char[] CharacterArray, int low, int high) {
             if (low < high) {
-                int pi = partition(CharacterArray, low, high);
+                int pivot = partition(CharacterArray, low, high);
 
-                quickSort(CharacterArray, low, pi - 1);
-                quickSort(CharacterArray, pi + 1, high);
+                quickSort(CharacterArray, low, pivot - 1);
+                quickSort(CharacterArray, pivot + 1, high);
             }
      }
-    //
+    //This Function is used to print maximum characters present in String
+    //This function has Main string as parameter 
 
      private static int partition(char[] CharacterArray, int low, int high) {
             char pivot = CharacterArray[high];
@@ -384,7 +393,7 @@ public class OperationsOnString{
     	        }
     	    System.out.println();
     	}
-
+     //Ask for new Main String
      public static void newString() {
     	 Scanner input = new Scanner(System.in);
     	 MainString = input.nextLine();
